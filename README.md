@@ -9,7 +9,6 @@ Below are the some of the questions I wanted to address in the analysis:
 - How many years of industry experience are jobs typically looking for?
 - What tools are the most commonly asked for in the postings?
 - Are US based companies in NYC or SF, also hiring in Toronto?
-- For a few jobs where the job salary is listed, what does the average range look like? 
 
 
 <b>Topic Modelling</b>
@@ -26,15 +25,24 @@ First topic had keywords such as architecture, management, governance, etc. in a
 Second topic had keywords such as bachelor, statistics, degree, etc. and was therefore labeled as Stats/CS background.
 Third topic had terms such as algorithms, models, machine learning, and was thus assigned a label of ML algorithms and models.
 
-Similarly, labels for other topics were assigned based on the top 15 words for each topic.
+Similarly, labels for other topics were assigned based on the top 15 words for each topic (shown below).
 
+![](/images/topics_list.JPG)
 
 It was found that Data Management and Engineering was among the top skills being required in Toronto for data science jobs. Managing data science teams and working 
 with big data and cloud were also frequently asked for in the job descriptions.
 
+![](/images/topic_labels_frequency_Toronto.JPG)
 
 <b>Data Sciences jobs in Toronto by companies</b>
 
+Companies such as Wayfair, Deloitte, and Bell Canada currently have the most number of job postings for data science roles. 
+![](/images/Toronto_most_jobs_by_companies.JPG)
+
+In Wayfair, most roles are related to managing data science teams followed by experience with EDA and segmentation.
+Deloitte, Bell, TD, and RBC are looking for Data Management and Engineering experience for a number of roles.
+Skills in big data and cloud/distributed computing are also asked for in quite a few postings for Deloitte. 
+![](/images/Toronto_jobs_by_companies_topic_label.JPG)
 
 <b>Are job titles an accurate representation of what the job description/skills summary states?</b>
 
@@ -58,28 +66,35 @@ While for a ML Engineer role, ML algorithms and models had the highest lift of 3
 
 Around 28% of the data science jobs in Toronto are either fully remote or remote/hybrid currently, while 72% are in the office.
 
+![](/images/remote_jobs_in_Toronto.JPG)
+
 In comparison, 32.6% of jobs in New York city are remote or hybrid remote.
+
+![](/images/remote_jobs_in_New_York.JPG)
 
 The fraction is a lot higher for San Francisco jobs as about 50% of the roles are remote/hybrid remote. This could also be due to a smaller number of data science job postings that were scraped for San Francisco.
 
+![](/images/remote_jobs_in_SF.JPG)
 
 <b>What skills/experience is most commonly asked for in data science job postings?</b>
 
 The word cloud below shows some of skills that are most commonly asked for in the job description of each role.
+
+![](/images/word_cloud.JPG)
 
 The analysis was performed on all the data combined for Toronto, New York City, and San Francisco. 
 
 Machine Learning, business analysis, and data engineering were among the top skills being asked for in the postings. While many postings also ask for skills in data 
 visualization, building data pipelines, and management of teams.
 
+In terms of education, most jobs ask for a master's degree, followed by a bachelor's degree in a quantitative field. While there were a few postings that listed having
+a PhD as a requirement as well.
+
+![](/images/jobs_education_level.JPG)
+
 
 <b>Are US based companies in NYC or SF, also hiring in Toronto?</b>
 
 Quite a few US based companies such as Tonal, Citi, Pinterest, etc. are hiring currently in Canada.
 
-
-<b>What does the average salary for data science jobs look like in Toronto?</b>
-
-For a small fraction of jobs in Toronto where salary was provided (~ 17 jobs) an analysis was performed to determine the average lower and upper range.
-
-
+![](/images/us_based_companies_in_Canada.JPG)
