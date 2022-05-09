@@ -1,5 +1,5 @@
 # indeed_job_postings_proj
-Data Science job postings in three cities were scraped from Indeed and analyzed to compare job markets and determine highly valued skills.
+Data Science job postings in three cities (Toronto, New York City, and San Francisco) were scraped from Indeed and analyzed to compare job markets and determine highly valued skills.
 
 Below are the some of the questions I wanted to address in the analysis:
 - What are the top skills employers are currently looking for?
@@ -37,11 +37,13 @@ with big data and cloud were also frequently asked for in the job descriptions.
 <b>Data Sciences jobs in Toronto by companies</b>
 
 Companies such as Wayfair, Deloitte, and Bell Canada currently have the most number of job postings for data science roles. 
+
 ![](/images/Toronto_most_jobs_by_companies.JPG)
 
 In Wayfair, most roles are related to managing data science teams followed by experience with EDA and segmentation.
 Deloitte, Bell, TD, and RBC are looking for Data Management and Engineering experience for a number of roles.
 Skills in big data and cloud/distributed computing are also asked for in quite a few postings for Deloitte. 
+
 ![](/images/Toronto_jobs_by_companies_topic_label.JPG)
 
 <b>Are job titles an accurate representation of what the job description/skills summary states?</b>
