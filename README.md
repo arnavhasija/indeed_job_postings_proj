@@ -1,4 +1,7 @@
 # indeed_job_postings_proj
+
+<h2>Background</h2>
+
 Data Science job postings in three cities (Toronto, New York City, and San Francisco) were scraped from Indeed and analyzed to compare job markets and determine highly valued skills.
 
 Below are the some of the questions I wanted to address in the analysis:
@@ -10,8 +13,28 @@ Below are the some of the questions I wanted to address in the analysis:
 - What tools are the most commonly asked for in the postings?
 - Are US based companies in NYC or SF, also hiring in Toronto?
 
+<h2>Web Scraping</h2>
 
-<b>Topic Modelling</b>
+BeautifulSoup and Requests libraries were used for web scraping job data from Indeed.
+
+Page content and structure were examined to understand how the job postings are organized and what specific data needs to be extracted for each job. In addition, another important consideration was how a search woould be replicated across other pages on the site since only 15 job postings appear on a page at a time.
+
+First step, was to understand the URL in which the query performed by the server is encoded. The ?q indicates the start of the query and corresponds to the 'What' input field. Thus, the words data science appear in this section. The 'Where' input box corresponds to the location (or l in the URL) as shown in the sample URL below.
+
+![](/images/job_scraping_elements.JPG)
+
+Next, a get_url function was defined to parse the web link for the job postings based on arguments of position and location.
+
+To extract all job records as a collection in a document, first I identified the unique attribute of a job posting such as its title. The document inspector was used to look at the job cards and inspect elements such as job title, company, location, job description, and post date. 
+
+After navigating the HTML tree structure of the site, the relevant parts were parsed used Beautiful Soup library. The class names were used to identify the HTML tags from which the text would be parsed. For instance, job title could be found within the h2 tag with the unique class name of jobTitle. The div tag that contained all the job postings in different cards had the unique class name of job_seen_beacon. 
+
+For pagination, the chevron object that is used to navigate to the next page was examined. Within the HTML code it was clear that this lies within an a tag and has a property aria-label which has a value of “Next”. This idea was applied using Beautiful Soup’s find method to look for the a tag with this property and value. Once all the pages have been scraped, break was used as exception handling to terminate the loop and skip to the next line of code after the loop.
+
+Therefore, applying this idea, all the elements within the job cards on the different pages were scraped using a loop. The results were all appended and saved to a CSV file which would next be used in the analysis. 
+
+
+<h2>Topic Modelling</h2>
 
 NMF (Non-negative matrix factorization) was used to perform topic modelling using the keywords parsed from the job description field.
 
@@ -34,7 +57,7 @@ with big data and cloud were also frequently asked for in the job descriptions.
 
 ![](/images/topic_labels_frequency_Toronto.JPG)
 
-<b>Data Sciences jobs in Toronto by companies</b>
+<h2>Data Sciences jobs in Toronto by companies</h2>
 
 Companies such as Wayfair, Deloitte, and Bell Canada currently have the most number of job postings for data science roles. 
 
@@ -46,7 +69,7 @@ Skills in big data and cloud/distributed computing are also asked for in quite a
 
 ![](/images/Toronto_jobs_by_companies_topic_label.JPG)
 
-<b>Are job titles an accurate representation of what the job description/skills summary states?</b>
+<h2>Are job titles an accurate representation of what the job description/skills summary states?</h2>
 
 Association rules mining was used to determine if a job title accurately represents the nature of the role. Since data science is a such a broad profession, the skills 
 required for each job tend to vary significantly.
@@ -63,8 +86,7 @@ For a Senior Data Scientist role, having a Stats/CS background had the highest l
 
 While for a ML Engineer role, ML algorithms and models had the highest lift of 3.2. 
 
-
-<b>Analysis by job locations - how many roles are now remote vs in office?</b>
+<h2>Analysis by job locations - how many roles are now remote vs in office?</h2>
 
 Around 28% of the data science jobs in Toronto are either fully remote or remote/hybrid currently, while 72% are in the office.
 
@@ -78,7 +100,7 @@ The fraction is a lot higher for San Francisco jobs as about 50% of the roles ar
 
 ![](/images/remote_jobs_in_SF.JPG)
 
-<b>What skills/experience is most commonly asked for in data science job postings?</b>
+<h2>What skills/experience is most commonly asked for in data science job postings?</h2>
 
 The word cloud below shows some of skills that are most commonly asked for in the job description of each role.
 
@@ -95,7 +117,7 @@ a PhD as a requirement as well.
 ![](/images/jobs_education_level.JPG)
 
 
-<b>Are US based companies in NYC or SF, also hiring in Toronto?</b>
+<h2>Are US based companies in NYC or SF, also hiring in Toronto?</h2>
 
 Quite a few US based companies such as Tonal, Citi, Pinterest, etc. are hiring currently in Canada.
 
