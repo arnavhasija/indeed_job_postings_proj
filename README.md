@@ -15,9 +15,9 @@ Below are the some of the questions I wanted to address in the analysis:
 
 <h2>Web Scraping</h2>
 
-BeautifulSoup and Requests libraries were used for web scraping job data from Indeed.
+Beautiful Soup and Requests libraries were used for web scraping job data from Indeed.
 
-Page content and structure were examined to understand how the job postings are organized and what specific data needs to be extracted for each job. In addition, another important consideration was how a search woould be replicated across other pages on the site since only 15 job postings appear on a page at a time.
+Page content and structure were examined to understand how the job postings are organized and what specific data needs to be extracted for each job. In addition, another important consideration was how a search would be replicated across other pages on the site since only 15 job postings appear on a page at a time.
 
 First step, was to understand the URL in which the query performed by the server is encoded. The ?q indicates the start of the query and corresponds to the 'What' input field. Thus, the words data science appear in this section. The 'Where' input box corresponds to the location (or l in the URL) as shown in the sample URL below.
 
@@ -27,18 +27,20 @@ Next, a get_url function was defined to parse the web link for the job postings 
 
 To extract all job records as a collection in a document, first I identified the unique attribute of a job posting such as its title. The document inspector was used to look at the job cards and inspect elements such as job title, company, location, job description, and post date. 
 
-After navigating the HTML tree structure of the site, the relevant parts were parsed used Beautiful Soup library. The class names were used to identify the HTML tags from which the text would be parsed. For instance, job title could be found within the <b>h2</b> tag with the unique class name of jobTitle. The <b>div</b> tag that contained all the job postings in different cards had the unique class name of job_seen_beacon. 
+After navigating the HTML tree structure of the site, the relevant parts were parsed using the Beautiful Soup library. The class names were used to identify the HTML tags from which the text would be parsed. For instance, job title could be found within the <b>h2</b> tag with the unique class name of jobTitle. The <b>div</b> tag that contained all the job postings in different cards had the unique class name of job_seen_beacon. 
 
-For pagination, the chevron object that is used to navigate to the next page was examined. Within the HTML code it was clear that this lies within an <b>a</b> tag and has a property aria-label which has a value of “Next”. This idea was applied using Beautiful Soup’s find method to look for the <b>a</b> tag with this property and value. Once all the pages have been scraped, break was used as exception handling to terminate the loop and skip to the next line of code after the loop.
+For pagination, the chevron object that is used to navigate to the next page was examined. Within the HTML code it was clear that this lies within an <b>a</b> tag and has a property aria-label which has a value of “Next”. This idea was applied using find method of Beautiful Soup library to look for the <b>a</b> tag with this property and value. Once all the pages were scraped, break was used as exception handling to terminate the loop and skip to the next line of code after the loop.
 
 Therefore, applying this idea, all the elements within the job cards on the different pages were scraped using a loop. The results were all appended and saved to a CSV file which would next be used in the analysis. 
 
 
 <h2>Topic Modelling</h2>
 
+After the data had been scraped for all cities, first step was to perform topic modelling to detect patterns in job descriptions and assign labels based on common themes.
+
 NMF (Non-negative matrix factorization) was used to perform topic modelling using the keywords parsed from the job description field.
 
-First the job_descriptions were converted to a matrix of TF-IDF features. 
+First, the job descriptions were converted to a matrix of TF-IDF features. 
 
 When using NMF, 6 topics were chosen after seeing an overlap in the topics/areas asked for in the job desciptions when a greater number of topics were chosen as the input parameter (n_components).
 
